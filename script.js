@@ -6,11 +6,11 @@ let tests = [
 
 let testCategories = {
     'previous-year': [
-        'Previous Year 2024 Main Exam',
-        'Previous Year 2023 Main Exam',
-        'Previous Year 2022 Main Exam',
-        'Previous Year 2021 Main Exam',
-        'Previous Year 2020 Main Exam'
+        // 'Previous Year 2024 Main Exam',
+        // 'Previous Year 2023 Main Exam',
+        // 'Previous Year 2022 Main Exam',
+        // 'Previous Year 2021 Main Exam',
+        // 'Previous Year 2020 Main Exam'
     ],
     'sectional': [
         'Test 01 Computer',
@@ -699,4 +699,5 @@ function startQuiz(testName) {
 function closeQuiz() {
     document.getElementById('quiz-section').style.display = 'none';
     document.getElementById('test-list-section').style.display = 'block';
+
 }
