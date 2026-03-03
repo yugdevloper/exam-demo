@@ -6,26 +6,14 @@ let tests = [
 
 let testCategories = {
     'previous-year': [
-        // 'Previous Year 2024 Main Exam',
-        // 'Previous Year 2023 Main Exam',
-        // 'Previous Year 2022 Main Exam',
-        // 'Previous Year 2021 Main Exam',
-        // 'Previous Year 2020 Main Exam'
+        
     ],
     'sectional': [
         'Test 01 Computer',
-        'Test 02 Hindi',
-        'Test 03 English',
-        'Test 04 Aptitude',
-        'Test 05 Reasoning',
-        'Test 06 General Knowledge'
+       
     ],
     'full-length': [
-        'Full Length Mock 01',
-        'Full Length Mock 02',
-        'Full Length Mock 03',
-        'Full Length Mock 04',
-        'Full Length Mock 05'
+       
     ]
 };
 
@@ -701,3 +689,4 @@ function closeQuiz() {
     document.getElementById('test-list-section').style.display = 'block';
 
 }
+
