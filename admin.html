@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - UP EXAM MANTRA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-page">
+    <!-- Login Page -->
+    <div id="login-page" class="login-container">
+        <div class="login-box">
+            <h1>UP EXAM MANTRA</h1>
+            <h2>Admin Login</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="admin-username">Username:</label>
+                    <input type="text" id="admin-username" placeholder="Enter admin username" required>
+                </div>
+                <div class="form-group">
+                    <label for="admin-password">Password:</label>
+                    <input type="password" id="admin-password" placeholder="Enter admin password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Login</button>
+                <p class="hint" style="margin-top: 1rem; text-align: center; color: #666; font-size: 0.9rem;">
+                    Demo: Username: <strong>admin</strong>, Password: <strong>admin123</strong>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="admin-dashboard" class="admin-dashboard" style="display: none;">
+        <!-- Admin Navigation -->
+        <nav class="admin-navbar">
+            <div class="admin-nav-header">
+                <h2>UP EXAM MANTRA - Admin Panel</h2>
+                <button class="logout-btn" onclick="handleLogout()">Logout</button>
+            </div>
+            <div class="admin-nav-menu">
+                <button class="nav-item active" onclick="openTab('dashboard')">📊 Dashboard</button>
+                <button class="nav-item" onclick="openTab('add-test')">➕ Add Test</button>
+                <button class="nav-item" onclick="openTab('manage-tests')">📝 Manage Tests</button>
+                <button class="nav-item" onclick="openTab('manage-categories')">📁 Manage Categories</button>
+                <button class="nav-item" onclick="openTab('daily-updates')">📅 Daily Updates</button>
+                <button class="nav-item" onclick="openTab('analytics')">📈 Analytics</button>
+            </div>
+        </nav>
+
+        <!-- Admin Content Area -->
+        <div class="admin-content">
+            <!-- Dashboard Tab -->
+            <section id="dashboard" class="admin-tab active">
+                <h2>Dashboard</h2>
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">📝</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Total Tests</div>
+                            <div class="stat-value" id="total-tests">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📁</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Categories</div>
+                            <div class="stat-value" id="total-categories">3</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Total Attempts</div>
+                            <div class="stat-value" id="total-attempts">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-info">
+                            <div class="stat-label">Avg Score</div>
+                            <div class="stat-value" id="avg-score">0%</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 2rem;">
+                    <h3>Quick Links</h3>
+                    <p>
+                        <a href="javascript:openTab('add-test')" class="quick-link">Add New Test</a> | 
+                        <a href="javascript:openTab('manage-tests')" class="quick-link">View All Tests</a> | 
+                        <a href="javascript:openTab('daily-updates')" class="quick-link">Update Daily Tests</a>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Add Test Tab -->
+            <section id="add-test" class="admin-tab">
+                <h2>Add New Test</h2>
+                <form onsubmit="handleAddTest(event)" class="admin-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="test-name">Test Name:</label>
+                            <input type="text" id="test-name" placeholder="e.g., Test 07 Aptitude" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="test-category">Category:</label>
+                            <select id="test-category" required>
+                                <option value="">Select Category</option>
+                                <option value="previous-year">Previous Year Papers</option>
+                                <option value="sectional">Sectional Tests</option>
+                                <option value="full-length">Full Length Mock Tests</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="test-questions">Number of Questions:</label>
+                            <input type="number" id="test-questions" min="1" max="200" placeholder="50" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="test-duration">Duration (minutes):</label>
+                            <input type="number" id="test-duration" min="1" max="480" placeholder="60" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="test-description">Description:</label>
+                        <textarea id="test-description" placeholder="Brief description about the test" rows="3"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="test-questions-data">Question & Answers (JSON format):</label>
+                        <textarea id="test-questions-data" placeholder='[{"question": "Q text", "options": ["A", "B", "C", "D", "E"], "correct": 0, "explanation": "explanation"}]' rows="8" required></textarea>
+                        <small style="color: #666;">Paste questions in JSON array format. Click "Sample Format" for example.</small>
+                        <button type="button" class="btn-secondary" onclick="showQuestionSample()" style="margin-top: 0.5rem;">📋 Sample Format</button>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="test-published" checked>
+                            Publish immediately
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">✅ Add Test</button>
+                </form>
+            </section>
+
+            <!-- Manage Tests Tab -->
+            <section id="manage-tests" class="admin-tab">
+                <h2>Manage Tests</h2>
+                <div class="manage-controls">
+                    <input type="text" id="search-tests" placeholder="🔍 Search tests..." onkeyup="filterTests()">
+                    <select id="filter-category" onchange="filterTests()">
+                        <option value="">All Categories</option>
+                        <option value="previous-year">Previous Year Papers</option>
+                        <option value="sectional">Sectional Tests</option>
+                        <option value="full-length">Full Length Mock Tests</option>
+                    </select>
+                    <div style="margin-left: auto; display:flex; gap:0.5rem;">
+                        <button class="btn" onclick="pushAllToFirestore()">⬆️ Sync Local → Firebase</button>
+                        <button class="btn" onclick="pullAllFromFirestore()">⬇️ Import Firebase → Local</button>
+                        <button class="btn-danger" onclick="deleteAllTests()">🗑️ Delete All Tests</button>
+                        <button class="btn-danger" onclick="deleteAllData()">🧹 Clear All Data</button>
+                    </div>
+                </div>
+                <div id="tests-list" class="tests-management-list">
+                    <!-- Tests will be populated here -->
+                </div>
+            </section>
+
+            <!-- Manage Categories Tab -->
+            <section id="manage-categories" class="admin-tab">
+                <h2>Manage Categories</h2>
+                <form onsubmit="handleAddCategory(event)" class="admin-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="category-name">Category Name:</label>
+                            <input type="text" id="category-name" placeholder="e.g., Mock Mock Tests" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="category-icon">Icon/Emoji:</label>
+                            <input type="text" id="category-icon" placeholder="e.g., 📚" maxlength="2" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="category-description">Description:</label>
+                        <textarea id="category-description" placeholder="Category description" rows="2"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">➕ Add Category</button>
+                </form>
+
+                <div style="margin-top: 2rem;">
+                    <h3>Existing Categories</h3>
+                    <div id="categories-list" class="categories-list">
+                        <!-- Categories will be populated here -->
+                    </div>
+                    <div style="margin-top: 0.75rem;">
+                        <button class="btn-danger" onclick="deleteAllCategories()">🗑️ Delete All Custom Categories</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Daily Updates Tab -->
+            <section id="daily-updates" class="admin-tab">
+                <h2>Daily Updates Management</h2>
+                <form onsubmit="handleAddDailyUpdate(event)" class="admin-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="daily-test-name">Select Test:</label>
+                            <select id="daily-test-name" required>
+                                <option value="">Choose a test</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="daily-upload-time">Upload Time:</label>
+                            <input type="time" id="daily-upload-time" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="daily-test-description">Description:</label>
+                        <textarea id="daily-test-description" placeholder="Brief description for daily updates" rows="2"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">📅 Add to Daily Updates</button>
+                </form>
+
+                <div style="margin-top: 2rem;">
+                    <h3>Today's Updates</h3>
+                    <div id="daily-updates-list" class="daily-updates-management-list">
+                        <!-- Daily updates will be populated here -->
+                    </div>
+                    <div style="margin-top: 0.75rem;">
+                        <button class="btn-danger" onclick="deleteAllDailyUpdates()">🗑️ Delete All Daily Updates</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Tab -->
+            <section id="analytics" class="admin-tab">
+                <h2>Analytics & Reports</h2>
+                <div class="analytics-container">
+                    <div class="analytics-card">
+                        <h3>Test Performance</h3>
+                        <div id="test-performance-list" style="margin-top: 1rem;">
+                            <!-- Performance data will be populated here -->
+                        </div>
+                    </div>
+                    <div class="analytics-card">
+                        <h3>User Statistics</h3>
+                        <div id="user-stats" style="margin-top: 1rem;">
+                            <!-- User stats will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Sample Question Modal -->
+    <div id="sample-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeSampleModal()">&times;</span>
+            <h2>Question Format Sample</h2>
+            <pre style="background: #f5f5f5; padding: 1rem; border-radius: 4px; overflow-x: auto;"><code>[
+  {
+    "question": "कंप्यूटर सिस्टम में ALU क्या करती है?",
+    "options": [
+      "अंकगणित और लॉजिक गणना",
+      "डेटा प्रवाह नियंत्रण",
+      "मेमोरी आवंटन",
+      "इनपुट आउटपुट जोड़ना",
+      "उपर्युक्त में से कोई नहीं"
+    ],
+    "correct": 0,
+    "explanation": "ALU अंकगणितीय तर्क इकाई है जो गणितीय और लॉजिकल ऑपरेशन करती है"
+  }
+]</code></pre>
+            <button class="btn btn-primary" onclick="closeSampleModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- Firebase SDK (compat version for regular script usage) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <!-- Firebase Configuration & Initialization -->
+    <script>
+        // Initialize Firebase with your project credentials
+        const firebaseConfig = {
+            apiKey: "AIzaSyBKd9S0S1l8wrrHVguAXYrlC5ojHbCVp-c",
+            authDomain: "test-6b87d.firebaseapp.com",
+            projectId: "test-6b87d",
+            storageBucket: "test-6b87d.firebasestorage.app",
+            messagingSenderId: "705070007525",
+            appId: "1:705070007525:web:ae58f5a4189b13a4b4c00c",
+            measurementId: "G-ZS8MGLEPP5"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        
+        // Expose Firebase services on window for other scripts
+        window.firebase = firebase;
+        window.auth = firebase.auth();
+        window.db = firebase.firestore();
+        window.realtimeDb = firebase.database();
+        
+        console.log("Firebase initialized successfully!");
+    </script>
+
+    <script src="admin.js"></script>
+</body>
+</html>

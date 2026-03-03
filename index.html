@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UP EXAM MANTRA - Government Exam Test Series</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">UP EXAM MANTRA</div>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#exams">Exams</a></li>
+                    <li><a href="#performance">Performance</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="admin.html" style="color: #ffb347; font-weight: bold;">⚙️ Admin</a></li>
+                </ul>
+                <div class="device-toggle">
+                    <button class="device-btn active" id="desktop-btn" onclick="setDesktopMode()" title="Desktop View">🖥️</button>
+                    <button class="device-btn" id="mobile-btn" onclick="setMobileMode()" title="Mobile View">📱</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>UP Lekhpal 2026 Test Series</h1>
+            <p>Comprehensive mock tests tailored for UP Lekhpal aspirants</p>
+            <button class="btn btn-primary" onclick="scrollToExams()">Attempt Now</button>
+        </div>
+    </section>
+
+    <!-- Daily Updates Section -->
+    <section id="daily-updates" class="exams-section">
+        <div class="container">
+            <h2>📅 Today's Updates</h2>
+            <div id="daily-updates-container" class="daily-updates-grid">
+                <!-- Daily uploads will appear here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Exam Categories Section -->
+    <section id="exams" class="exams-section">
+        <div class="container">
+            <h2>UP Lekhpal 2026</h2>
+            <div class="exams-grid">
+                <!-- UP Lekhpal -->
+                <div class="exam-card" onclick="startTest('uplekhpal')">
+                    <div class="exam-icon">📝</div>
+                    <h3>UP Lekhpal 2026</h3>
+                    <p>Complete syllabus coverage &amp; previous year papers</p>
+                    <div class="tests-count">30+ Tests</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Categories Section -->
+    <section id="test-categories-section" class="exams-section" style="display:none;">
+        <div class="container">
+            <h2 id="category-title">UP Lekhpal 2026 - Select Test Type</h2>
+            <div class="exams-grid">
+                <div class="exam-card" onclick="selectCategory('previous-year')">
+                    <div class="exam-icon">📚</div>
+                    <h3>Previous Year Papers</h3>
+                    <p>Previous year exam questions with solutions</p>
+                    <div class="tests-count">5+ Papers</div>
+                </div>
+
+                <div class="exam-card" onclick="selectCategory('sectional')">
+                    <div class="exam-icon">📖</div>
+                    <h3>Sectional Tests</h3>
+                    <p>Topic-wise sectional practice tests</p>
+                    <div class="tests-count">20+ Tests</div>
+                </div>
+
+                <div class="exam-card" onclick="selectCategory('full-length')">
+                    <div class="exam-icon">📋</div>
+                    <h3>Full Length Mock Tests</h3>
+                    <p>Complete exam simulation in real time</p>
+                    <div class="tests-count">10+ Tests</div>
+                </div>
+            </div>
+            <button class="btn" onclick="backToExams()" style="margin-top: 2rem;">← Back</button>
+        </div>
+    </section>
+
+    <!-- Test List Section -->
+    <section id="test-list-section" class="exams-section" style="display:none;">
+        <div class="container">
+            <h2 id="test-list-title">Available Tests</h2>
+            <ul id="test-list">
+                <!-- tests will populate here -->
+            </ul>
+            <div class="add-test">
+                <input type="text" id="new-test-name" placeholder="New test name" />
+                <button class="btn" onclick="addTest()">Add Test</button>
+            </div>
+            <button class="btn" onclick="backToCategories()" style="margin-top: 2rem;">← Back</button>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section id="quiz-section" class="exams-section" style="display:none;">
+        <div class="container">
+            <h2 id="quiz-title"></h2>
+            <div id="quiz-content">
+                <!-- quiz will populate here -->
+            </div>
+            <button class="btn" onclick="closeQuiz()">Back to tests</button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Why Choose ExamMaster?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h4>Instant Results</h4>
+                    <p>Get detailed performance analysis immediately</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h4>Analytics</h4>
+                    <p>Track progress with detailed metrics</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h4>Expert Questions</h4>
+                    <p>Questions designed by exam experts</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h4>Mobile Friendly</h4>
+                    <p>Practice anywhere, anytime</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>UP EXAM MANTRA</h4>
+                    <p>Your trusted platform for government exam preparation</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#exams">Exams</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@exammaster.com</p>
+                    <p>Phone: +91 1234567890</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 UP EXAM MANTRA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK (compat version for regular script usage) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+    <!-- Firebase Configuration & Initialization -->
+    <script>
+        // Initialize Firebase with your project credentials
+        const firebaseConfig = {
+            apiKey: "AIzaSyBKd9S0S1l8wrrHVguAXYrlC5ojHbCVp-c",
+            authDomain: "test-6b87d.firebaseapp.com",
+            projectId: "test-6b87d",
+            storageBucket: "test-6b87d.firebasestorage.app",
+            messagingSenderId: "705070007525",
+            appId: "1:705070007525:web:ae58f5a4189b13a4b4c00c",
+            measurementId: "G-ZS8MGLEPP5"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        
+        // Expose Firebase services on window for other scripts
+        window.firebase = firebase;
+        window.auth = firebase.auth();
+        window.db = firebase.firestore();
+        window.realtimeDb = firebase.database();
+        
+        console.log("Firebase initialized successfully!");
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
