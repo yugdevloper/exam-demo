@@ -2,6 +2,7 @@
 
 let tests = [
     'Test 01 Computer'
+    'Test 02 Computer'
 ];
 
 let testCategories = {
@@ -689,4 +690,5 @@ function closeQuiz() {
     document.getElementById('test-list-section').style.display = 'block';
 
 }
+
 
